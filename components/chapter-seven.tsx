@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
+import { StoryPhoto } from "@/components/story-photo";
 import { useProgress } from "@/components/progress-provider";
 import { CHAPTER_SEVEN } from "@/content/game";
 import { writeDuck } from "@/lib/audio";
@@ -181,7 +182,7 @@ function LetterCard({
     <section className="unlock-letter-wrap">
       <div className="unlock-memories" aria-hidden>
         {CHAPTER_SEVEN.memories.map((src, index) => (
-          <MemoryPhoto key={src} src={src} index={index} />
+          <StoryPhoto key={src} src={src} className={`unlock-polaroid is-m${index + 1}`} />
         ))}
       </div>
 
@@ -358,17 +359,6 @@ function VoiceNote() {
         </button>
       ) : null}
     </>
-  );
-}
-
-function MemoryPhoto({ src, index }: { src: string; index: number }) {
-  const [ready, setReady] = useState(false);
-
-  return (
-    <figure className={`unlock-polaroid is-m${index + 1}${ready ? " is-ready" : ""}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="" onLoad={() => setReady(true)} onError={() => setReady(false)} />
-    </figure>
   );
 }
 

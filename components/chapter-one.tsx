@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { HiddenCounter } from "@/components/hidden-counter";
@@ -33,12 +32,10 @@ export function ChapterOne() {
       </header>
 
       <figure className="letter-hero">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={CHAPTER_ONE.image}
           alt="Two figures under a heart of stars"
-          width={1600}
-          height={900}
-          priority
           className="letter-hero-image"
         />
         <HiddenNote id={CHAPTER_ONE.hiddenNoteId} className="letter-secret">

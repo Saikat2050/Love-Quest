@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { HiddenNote } from "@/components/hidden-note";
+import { StoryPhoto } from "@/components/story-photo";
 import { useProgress } from "@/components/progress-provider";
 import {
   CHAPTER_SIX,
@@ -189,7 +190,7 @@ function QuestionCard({
             onClick={() => onPick(option.key)}
             aria-pressed={selected === option.key}
           >
-            <DreamPhoto src={option.photo} compact />
+            <StoryPhoto src={option.photo} className="future-photo" compact />
             <span className="future-option-key">{option.key.toUpperCase()}</span>
             <span className="future-option-label">{option.label}</span>
           </button>
@@ -215,7 +216,7 @@ function RevealCard({
     <section className="future-card future-reveal">
       <p className="future-kicker">{CHAPTER_SIX.revealTitle} ✦</p>
       <h2>{option.label}</h2>
-      <DreamPhoto src={option.photo} />
+      <StoryPhoto src={option.photo} className="future-photo" />
       <p className="future-message">{option.reveal} ♥</p>
       <button type="button" className="future-cta" onClick={onNext}>
         {last ? `${CHAPTER_SIX.seeBook} →` : `${CHAPTER_SIX.next} →`}
@@ -244,7 +245,7 @@ function AlbumCard({
       <div className="future-scrap">
         {chosen.map((option, index) => (
           <article key={`${option.key}-${index}`} className="future-scrap-card">
-            <DreamPhoto src={option.photo} compact />
+            <StoryPhoto src={option.photo} className="future-photo" compact />
             <p>
               {index + 1}. {option.label}
             </p>
@@ -263,18 +264,3 @@ function AlbumCard({
   );
 }
 
-function DreamPhoto({ src, compact = false }: { src: string; compact?: boolean }) {
-  const [ready, setReady] = useState(false);
-
-  return (
-    <figure className={`future-photo${compact ? " is-compact" : ""}${ready ? " is-ready" : ""}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt=""
-        onLoad={() => setReady(true)}
-        onError={() => setReady(false)}
-      />
-    </figure>
-  );
-}

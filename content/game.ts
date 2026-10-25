@@ -20,6 +20,36 @@ export const OPENING = {
   imageAlt: "The two of you, watching the city at dusk",
 } as const;
 
+export const BOOT = {
+  kicker: "A moment, my love",
+  title: "Preparing our story",
+  lead: "Gathering every photograph, letter, and the song that stays with us…",
+  progress: "Loading our memories",
+  stages: [
+    {
+      id: 1,
+      title: "Opening our story",
+      line: "Opening a little world of us...",
+    },
+    {
+      id: 2,
+      title: "Bringing memories to life",
+      line: "Collecting all the little pieces...",
+    },
+    {
+      id: 3,
+      title: "Filling this story with love",
+      line: "Filling this story with love...",
+    },
+    {
+      id: 4,
+      title: "Entering our little universe",
+      line: "A little world made just for you. ❤️",
+    },
+  ],
+  memories: ["/images/chapter-2-us.jpg", "/images/chapter-3/you.jpg", "/images/opening.jpg"],
+} as const;
+
 export const GUIDE = {
   kicker: "A traveler's scroll",
   title: "How this road works",

@@ -4,6 +4,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { HiddenNote } from "@/components/hidden-note";
+import { StoryPhoto } from "@/components/story-photo";
 import { useProgress } from "@/components/progress-provider";
 import { CHAPTER_FOUR, type SpecialReason } from "@/content/game";
 import {
@@ -295,7 +296,7 @@ function RevealCard({
       </header>
       <p className="special-kicker">{reason.title}</p>
       <h2>{reason.headline}</h2>
-      <ReasonPhoto src={reason.photo} alt="" />
+      {reason.photo ? <StoryPhoto src={reason.photo} className="special-polaroid" /> : null}
       <p className="special-message">
         {reason.message} ♥
       </p>
@@ -318,7 +319,9 @@ function AlbumCard({ onRoad }: { onRoad: () => void }) {
               {index + 1}. {reason.title}
             </p>
             <h3>{reason.headline}</h3>
-            <ReasonPhoto src={reason.photo} alt="" compact />
+            {reason.photo ? (
+              <StoryPhoto src={reason.photo} className="special-polaroid" compact />
+            ) : null}
             <p>{reason.message}</p>
           </article>
         ))}
@@ -328,34 +331,6 @@ function AlbumCard({ onRoad }: { onRoad: () => void }) {
         {CHAPTER_FOUR.continue} →
       </button>
     </section>
-  );
-}
-
-function ReasonPhoto({
-  src,
-  alt,
-  compact = false,
-}: {
-  src: string | null;
-  alt: string;
-  compact?: boolean;
-}) {
-  const [visible, setVisible] = useState(false);
-
-  if (!src) {
-    return null;
-  }
-
-  return (
-    <figure className={`special-polaroid${compact ? " is-compact" : ""}${visible ? " is-ready" : ""}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={alt}
-        onLoad={(event) => setVisible(event.currentTarget.naturalWidth > 0)}
-        onError={() => setVisible(false)}
-      />
-    </figure>
   );
 }
 

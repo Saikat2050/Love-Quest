@@ -5,6 +5,7 @@ import { WorldShell } from "@/components/world-shell";
 import { GAME } from "@/content/game";
 import "./globals.css";
 import "./mobile.css";
+import "./boot.css";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",

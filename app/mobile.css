@@ -145,7 +145,7 @@ label {
 
 @media (max-width: 360px) {
   .music-dock {
-    padding-right: 0.4rem;
+    padding-left: 0.4rem;
     gap: 0.3rem;
   }
 
